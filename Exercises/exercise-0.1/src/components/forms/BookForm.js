@@ -91,7 +91,7 @@ const BookForm = props => {
             </div>
             <div className="col-xs-3">
                 <DropWrapper dropped={handleImageChosen} target={props} prop="cover">
-                    <img src={cover}  />
+                    <img src={cover} alt="" />
                 </DropWrapper>
             </div>            
             <button type="submit" className="btn btn-default btn-primary" >Submit</button>
