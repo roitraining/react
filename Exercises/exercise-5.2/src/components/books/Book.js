@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 class Book extends React.Component {
 
     shouldComponentUpdate(nextProps) {
-		return (this.props.title !== nextProps.title);
+        return (this.props.title !== nextProps.title);
     }
-    
+
     render() {
         return (<tr>
             <td>
@@ -20,8 +20,9 @@ class Book extends React.Component {
 
 Book.defaultProps = {
 	title: 'unknown',
-    author: 'unknown',
+	author: 'unknown',
     cover: '/NoImage.png'
+
 };
 
 

@@ -6,4 +6,3 @@ const bookStore = combineReducers({
 });
 
 export default bookStore;
-

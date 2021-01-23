@@ -1,12 +1,9 @@
-import fetch from "isomorphic-fetch";
-
 const url = "http://localhost:3030/api/bookreactions/";
 
 const headers = {
     accept: 'application/json',
     'content-type': 'application/json'
 };
-
 
 export const fetchAllBooks = () => {
     return fetch(url + 'Books').then((response) => {
@@ -15,14 +12,15 @@ export const fetchAllBooks = () => {
 }
 
 export const addBook = (book) => {
-    return fetch(url + 'Books', {
-        method: 'post',
-        mode: 'cors',
-        headers: headers,
-        body: JSON.stringify(book)
-    }).then(function (response) {
-        return response.json();
-    });
+    return fetch(url + 'Books',
+        {
+            method: 'post',
+            mode: 'cors',
+            headers: headers,
+            body: JSON.stringify(book)
+        }).then((response) => {
+            return response.json();
+        });
 }
 
 export const fetchReviews = (bookId) => {
@@ -33,13 +31,13 @@ export const fetchReviews = (bookId) => {
 }
 
 export const addReview = (review) => {
-    return fetch(url + "Reviews", {
-        method: 'post',
-        mode: 'cors',
-        headers: headers,
-        body: JSON.stringify(review)
-    })
-        .then(function (response) {
+    return fetch(url + 'Reviews',
+        {
+            method: 'post',
+            mode: 'cors',
+            headers: headers,
+            body: JSON.stringify(review)
+        }).then((response) => {
             return response.json();
         });
 }

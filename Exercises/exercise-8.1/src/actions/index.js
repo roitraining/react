@@ -1,6 +1,5 @@
 import * as api from '../api';
 import * as actionTypes from './actionTypes';
-import {reset} from 'redux-form';
 
 export const receiveReviews = (bookId) => (dispatch) => {
     return api.fetchReviews(bookId).then((response) => {
@@ -11,15 +10,13 @@ export const receiveReviews = (bookId) => (dispatch) => {
     })
 }
 
-
 export const addReview = (review) => (dispatch) => {
-    api.addReview(review).then((response) => {
+    return api.addReview(review).then((response) => {
         dispatch({
             type: actionTypes.ADD_REVIEW,
-            review: response
+            response
         });
-        dispatch(reset('review'));
-    });
+    })
 }
 
 export const receiveBooks = () => (dispatch) => {
@@ -32,12 +29,11 @@ export const receiveBooks = () => (dispatch) => {
 }
 
 export const addBook = (book) => (dispatch) => {
-    api.addBook(book).then((response) => {
+    return api.addBook(book).then((response) => {
         dispatch({
             type: actionTypes.ADD_BOOK,
-            book: response
+            response
         });
-        dispatch(reset('book'));
-    });
+    })
 }
 

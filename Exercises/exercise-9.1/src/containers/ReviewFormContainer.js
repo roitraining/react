@@ -1,28 +1,15 @@
-import { connect } from 'react-redux';
-import reviewForm from '../components/forms/ReviewForm';
+import {connect} from 'react-redux';
+import ReviewForm from '../components/forms/ReviewForm';
 import { addReview } from '../actions';
 
-const data = {
-    content: ''
-}
-
-function getData(id) {
-    data.bookId = id;
-    return data;
-}
-
-const mapDispatchToProps = ({
-    onSubmit: addReview
+const mapStateToProps = (state, ownProps) => ({
+    bookId : parseInt(ownProps.bookId)
 });
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        initialValues: getData(ownProps.id)
-    }
+const mapDispatchToProps = {
+    addReview
 };
 
-
-const ReviewFormContainer = connect(mapStateToProps, mapDispatchToProps)(reviewForm);
-
+const ReviewFormContainer = connect(mapStateToProps, mapDispatchToProps)(ReviewForm);
 
 export default ReviewFormContainer;

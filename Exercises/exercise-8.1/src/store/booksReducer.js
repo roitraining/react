@@ -1,16 +1,22 @@
+
 import { LIST_BOOKS, ADD_BOOK } from '../actions/actionTypes';
 
-const books = [{ author: '', title: '', bookId: -1, cover: '' }];
+const books = [{
+    title: "",
+    author: "",
+    conver: "",
+    bookId: -1
+}];
 
 export const booksReducer = (state = books, action) => {
-    switch (action.type) {    
-        case ADD_BOOK:
-            return [
-                action.book, ...state
-            ];
+    switch (action.type) {
         case LIST_BOOKS:
             return action.response;
+        case ADD_BOOK:
+            return [
+                action.response, ...state
+            ];
         default:
-            return state;
+            return state
     }
 }

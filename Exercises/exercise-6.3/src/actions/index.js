@@ -9,3 +9,12 @@ export const receiveReviews = (bookId) => (dispatch) => {
         });
     })
 }
+
+export const addReview = (review) => (dispatch) => {
+    return api.addReview(review).then((response) => {
+        dispatch({
+            type: actionTypes.ADD_REVIEW,
+            response
+        });
+    })
+}

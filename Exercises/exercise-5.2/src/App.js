@@ -1,21 +1,24 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import Navigation from './components/common/Navigation';
 import BookList from './components/books/BookList';
+// import ReviewList from './components/reviews/ReviewList';
+import { BrowserRouter, Route } from 'react-router-dom';
 import About from './components/about/About';
-//import ReviewList from './components/reviews/ReviewList';
+
 import './App.css';
 
-const App = () => (
-  <BrowserRouter>
-    <div className="container-fluid">
-      <Navigation />
-      <div className="container">
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="container-fluid">
+        <Navigation />
+        <div className="container">
           <Route exact path="/" component={BookList} />
-          <Route path="/about" component={About} />
+          <Route  path="/about" component={About} />
+        </div>
       </div>
-    </div>
-  </BrowserRouter>
-);
+    </BrowserRouter>
+
+  );
+}
 
 export default App;

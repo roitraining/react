@@ -9,7 +9,7 @@ class AddBookForm extends React.Component {
 		this.state = {title: "Add Book"};	
 	}
 	
-	setTitle(e) {
+	setTitle = (e) => {
 		this.setState({title: e.target.value});
 	}
 
@@ -20,11 +20,11 @@ class AddBookForm extends React.Component {
 					<label>1. Title (uncontrolled):<input type="text" className="form-control" /></label>
 				</div>
 				<div className="form-group">
-					<label>2. Title (one way state):<input type="text" className="form-control" onChange={this.setTitle.bind(this)} /></label>
+					<label>2. Title (one way state):<input type="text" className="form-control" onChange={this.setTitle} /></label>
 					current state: {this.state.title}
 				</div>
 				<div className="form-group">
-					<label>3. Title (controlled):<input type="text" className="form-control" value={this.state.title} onChange={this.setTitle.bind(this)} /></label>
+					<label>3. Title (controlled):<input type="text" className="form-control" value={this.state.title} onChange={this.setTitle} /></label>
 				</div>
 				</form>);
 	}

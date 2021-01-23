@@ -1,9 +1,0 @@
-.dropTarget {
-  
-  height:160px;
-  
-  width: 160px;
-  
-  background-image: url(/drop.png);
-
-}

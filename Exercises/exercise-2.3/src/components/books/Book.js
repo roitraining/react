@@ -1,27 +1,21 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-class Book extends React.Component {
+function Book(props) {
 
-    render() {
-        return (<tr>
+    const { title = "unknown", author  = "unknown" } = props;
+    return (
+        <tr>
             <td>
-                {this.props.title}
+                {title}
             </td>
-            <td>{this.props.author}</td>
-        </tr>);
-    }
+            <td>{author}</td>
+        </tr>
+    )
 }
 
-Book.defaultProps = {
-	title: 'unknown',
-	author: 'unknown'
-};
-
-
 Book.propTypes = {
-	title: PropTypes.string.isRequired,
-	author: PropTypes.string.isRequired
+	title: PropTypes.string,
+	author: PropTypes.string
 };
 
 export default Book;

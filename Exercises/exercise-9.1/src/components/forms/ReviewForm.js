@@ -1,39 +1,47 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import RenderTextArea from './RenderTextArea';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import PropTypes from 'prop-types';
 
-const validate = values => {
-    const errors = {};
+const ReviewForm = ({ bookId, addReview }) => (
+    <Formik
+        initialValues={{
+            content: ''
+        }}
+        validate={values => {
+            const errors = {};
+            if (!values.content) {
+                errors.content = 'Review cannot be empty';
+            } else if (values.content.length < 5) {
+                errors.content = 'Review must be at least 5 characters';
+            }
+            return errors;
+        }}
+        onSubmit={(values, { resetForm }) => {
+            const review = {
+                bookId,
+                content: values.content
+            }
+            addReview(review).then(() => {
+                resetForm();
+            });
+        }}
+    >
+        {({ isSubmitting }) => (
+            <Form className="form-group form-inline">
+                <label className="control-label">Review:
+                    <Field type="text" className="form-control" name="content" as="textarea" />
+                </label>
+                <button type="submit" className="btn btn-primary" disabled={isSubmitting}>Add Review</button>
+                <ErrorMessage name="content" className="alert alert-danger" component="div" />
+            </Form>
 
-    if (!values.content || values.content.trim() === '') {
-        errors.content = 'Enter a review';
-    }
-    else if (values.content.length > 256 || values.content.length < 3) {
-        errors.content = 'Review must be between 3 and 256 characters';
-    }
 
-    return errors;
-}
+        )}
+    </Formik>
+)
 
-const reviewForm = props => {
-    const { handleSubmit } = props;
-    return <form onSubmit={handleSubmit}>
-        <div className="row vertical-align">
-            <div className="col-xs-8">
-                <Field
-                    name="content"
-                    controlId="content"
-                    type="text*"
-                    component={RenderTextArea}
-                    label="Review*" />
-            </div>
-            <button type="submit" className="btn btn-default btn-primary" >Submit</button>
-        </div>
-    </form>;
 
-}
+ReviewForm.propTypes = {
+    bookId: PropTypes.number.isRequired
+};
 
-export default reduxForm({
-    form: 'review',
-    validate
-})(reviewForm);
+export default ReviewForm;

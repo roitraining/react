@@ -1,15 +1,8 @@
-import React from 'react';
-
 const Navigation = () => (
-	<div className="row navbar navbar-default">
+	<nav className="navbar navbar-expand-sm bg-light">
 		 <a className="navbar-brand" href="/">Book Reactions</a>
-	</div>
+	</nav>
 );
 
 export default Navigation;
-
-
-
-
-
 

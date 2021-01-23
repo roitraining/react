@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 
 class Book extends React.Component {
 
-    shouldComponentUpdate(nextProps) {
-		return (this.props.title !== nextProps.title);
-    }
-    
     render() {
         return (<tr>
             <td>

@@ -15,7 +15,7 @@ class Books extends React.Component {
 					};	
 	}
 		
-	setTitle(e) {
+	setTitle = (e) => {
 		this.setState({title: e.target.value});
 	}	
 		
@@ -40,7 +40,7 @@ class Books extends React.Component {
 				  <h2>Add a book</h2>
 				  <AddBookForm />
 				  <h2>Update a book</h2>
-				  <UpdateBookForm title={this.state.title} changeTitle={this.setTitle.bind(this)} />
+				  <UpdateBookForm title={this.state.title} changeTitle={this.setTitle} />
 			</div>);
 	 }
 }

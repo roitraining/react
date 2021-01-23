@@ -3,7 +3,7 @@ import bookStore from './reducers';
 
 const configureStore = () => {
 	let store = createStore(bookStore);
-    return store;
+   return store;
 }
 
 export default configureStore;

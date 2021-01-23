@@ -1,59 +1,55 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import RenderField from './RenderField';
+import PropTypes from 'prop-types';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-const validate = values => {
-    const errors = {};
-    if(required(values.title, errors, 'title')) {
-        size(values.title, errors, 'title', 3, 256);
-    }
-    if (required(values.author, errors, 'author')) {
-        size(values.author, errors, 'author', 4, 100);  
-    }
-    return errors;
-}
+const BookForm = (props) => (
 
-const required = (value, errors, prop) => {
-    if (!value || value.trim() === '') {
-        errors[prop] = 'Cannot be empty';
-        return false;
-    }
-    return true;
-}
+    <Formik
+        initialValues={{
+            title: '',
+            author: ''
+        }}
+        validate={values => {
+            const errors = {};
+            if (!values.title) {
+                errors.title = 'Title Required';
+            } else if (values.title.length < 3) {
+                errors.title = 'Title must be at least 3 characters';
+            }
+            if (!values.author) {
+                errors.author = 'Author Required';
+            } else if (values.author.length < 3) {
+                errors.author = 'Author must be at least 3 characters';
+            }
+            return errors;
+        }}
+        onSubmit={(values, { resetForm }) => {
+            const book = {
+                title: values.title,
+                author: values.author,
+                cover: '',
+                bookId: -1
+            }
+            props.addBook(book).then(() => {
+                resetForm();
+            });
+        }}
+    >
+        {({ isSubmitting }) => (
+            <Form className="form-group form-inline">
+                <label className="control-label">Title:
+				<Field type="text" className="form-control" name="title" />
+                </label>
+                <label className="control-label">Author:
+				<Field type="text" className="form-control" name="author" />
+                </label>
+                <button type="submit" className="btn btn-primary" disabled={isSubmitting}>Add Book</button>
+                <ErrorMessage name="title" className="alert alert-danger" component="div" />
+                <ErrorMessage className="alert alert-danger" name="author" component="div" />
+            </Form>
+        )}
+    </Formik>
+)
 
-const size = (value, errors, prop, min, max) => {
-    if (value.length > max || value.length < min) {
-        errors[prop] = `must be between ${min} and ${max} characters`;
-    }
-}
+BookForm.propTypes = { addBook: PropTypes.func.isRequired };
 
-const BookForm = props => {
-    const { handleSubmit } = props;
-
-    return (<form className="form-group form-inline" onSubmit={handleSubmit}>
-        <div className="row vertical-align">
-            <div className="col-xs-3">
-                <Field
-                    component={RenderField}
-                    name="title"
-                    type="text"
-                    controlId="title"
-                    label="Title*" />
-            </div>
-            <div className="col-xs-3">
-                <Field
-                    component={RenderField}
-                    name="author"
-                    type="text"
-                    controlId="author"
-                    label="Author*" />
-            </div>
-            <button type="submit" className="btn btn-default btn-primary" >Submit</button>
-        </div>
-    </form>);
-}
-
-export default reduxForm({
-    form: 'book',
-    validate
-})(BookForm);
+export default BookForm;

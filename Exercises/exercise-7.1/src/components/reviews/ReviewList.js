@@ -1,32 +1,36 @@
-import React from 'react';
-import Review from "./Review";
+import Review from './Review';
+import { useEffect } from 'react';
+import ReviewFormContainer from '../../containers/ReviewFormContainer';
+function ReviewList({ receiveReviews, reviews, match: { params: { title, bookId } } }) {
 
-class ReviewList extends React.Component {
+    useEffect(() => {
+        receiveReviews(bookId);
+    },
+    [receiveReviews,bookId]);
 
-	componentWillMount() {
-		this.props.receiveReviews(this.props.match.params.id);
-	}
 
-	render() {
-		const { reviews, match: { params: { title} } } = this.props;
-		return (<div className="row">
-			<h2>Reviews of {title}:</h2>
-			<div className="table-responsive">
-				<table className="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th>Review</th>
-						</tr>
-					</thead>
-					<tbody>
-						{reviews.map(function (item, i) {
-							return <Review review={item.content} key={i} />;
-						})}
-					</tbody>
-				</table>
-			</div>
-		</div>);
-	}
+    return (
+        <div className="row">
+            <h2>Reviews:</h2>
+            <div className="table-responsive">
+                <ReviewFormContainer bookId={bookId} />
+                <table className="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Reviews of {title}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {reviews.map(function (item, i) {
+                            return <Review review={item.content} key={i} />;
+                        }
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    )
+
 }
 
-export default ReviewList; 
+export default ReviewList;
