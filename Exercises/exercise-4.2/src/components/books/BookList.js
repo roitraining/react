@@ -22,7 +22,7 @@ class BookList extends React.Component {
         });
     }
 
-    addBook(title, author) {
+    addBook = (title, author) => {
         this.state.books.push({
             title: title,
             author: author
