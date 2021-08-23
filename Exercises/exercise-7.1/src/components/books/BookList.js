@@ -21,13 +21,11 @@ class BookList extends React.Component {
     }
 
     addBook = (title, author) => {
-        api.addBook({
+        this.props.addBook({
                title: title,
                 author: author,
                 cover: ''
-        }).then(() => {
-            this.getBooks();
-      });
+        });
     }
     
     render() {
