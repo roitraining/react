@@ -1,7 +1,6 @@
 import React from 'react';
 import Book from './Book';
 import BookFormContainer from '../../containers/BookFormContainer';
-import * as api from '../../api'; 
 
 class BookList extends React.Component {
 
