@@ -29,3 +29,15 @@ export const fetchReviews = (bookId) => {
             return response.json();
         });
 }
+
+export const addReview = (review) => {
+    return fetch(url + 'Reviews',
+        {
+            method: 'post',
+            mode: 'cors',
+            headers: headers,
+            body: JSON.stringify(review)
+        }).then((response) => {
+            return response.json();
+        });
+}

@@ -1,5 +1,5 @@
-import Navigation from './components/common/Navigation';
 import './App.css';
+import Navigation from './common/Navigation';
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <Navigation />
       <p className="container">
         Where you react to books.
-    </p>
+      </p>
     </div>
   );
 }

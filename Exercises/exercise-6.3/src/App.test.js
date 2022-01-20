@@ -1,10 +1,15 @@
+import React from 'react';
 import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 import App from './App';
 
-jest.mock('./components/common/Navigation', () => () => (<div>navigation</div>));
-jest.mock('./components/books/BookList', () => () => (<div>book list</div>));
+test('renders learn react link', () => {
+  const { getByText } = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 
-test('it renders without crashing', () => {
-  const {debug } = render(<App />);
-  debug();
+  expect(getByText(/learn/i)).toBeInTheDocument();
 });

@@ -1,26 +1,22 @@
-import Navigation from './components/common/Navigation';
-import BookList from './components/books/BookList';
-import ReviewListContainer from './containers/ReviewListContainer';
-import { BrowserRouter, Route } from 'react-router-dom';
-import About from './components/about/About';
-import { Provider } from 'react-redux';
-
 import './App.css';
+import BookList from './features/books/BookList';
+import Navigation from './features/common/Navigation';
+import ReviewList from './features/reviews/ReviewList';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import About from './features/about/About';
 
-function App({store}) {
+function App() {
+
   return (
-    <Provider store={store}>    
-      <BrowserRouter>
-      <div className="container-fluid">
-        <Navigation />
-        <div className="container">
-          <Route exact path="/" component={BookList} />
-          <Route  path="/about" component={About} />
-          <Route path="/reviews/:bookId/:title" component={ReviewListContainer} />
-        </div>
-      </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<BookList />} />
+          <Route path="about" element={<About />} />
+          <Route path="/reviews/:bookId/:title" element={<ReviewList />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
-    </Provider>
   );
 }
 
