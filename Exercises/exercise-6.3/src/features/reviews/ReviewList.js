@@ -13,7 +13,7 @@ function ReviewList() {
   const book = useSelector(state => selectBookById(state, +bookId));
 
   function addReview(review) {
-    api.addReview(review).then(getReviews());
+    api.addReview(review).then(() => {getReviews()});
     getReviews();
   }
 

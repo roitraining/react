@@ -8,7 +8,7 @@ function BookList() {
   const [books, setBooks] = useState([]);
 
   function addBook(book) {
-    api.addBook(book).then(getBooks());
+    api.addBook(book).then(() => getBooks());
   }
 
   function getBooks() {

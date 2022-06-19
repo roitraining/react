@@ -9,7 +9,7 @@ function ReviewList() {
   const [reviews, setReviews] = useState([]);
 
   function addReview(review) {
-    api.addReview(review).then(getReviews());
+    api.addReview(review).then(() => {getReviews()});
     getReviews();
   }
 

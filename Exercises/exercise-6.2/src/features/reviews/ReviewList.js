@@ -10,7 +10,7 @@ function ReviewList() {
   const { bookId, title } = useParams()
 
   function addReview(review) {
-    api.addReview(review).then(getReviews());
+    api.addReview(review).then(() => {getReviews()});
     getReviews();
   }
 
