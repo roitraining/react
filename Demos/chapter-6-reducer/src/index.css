@@ -1,0 +1,13 @@
+.form-inline .form-group {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}

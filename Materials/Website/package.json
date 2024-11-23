@@ -1,14 +1,15 @@
 {
-  "name": "published-site",
+  "name": "website",
   "version": "1.0.0",
-  "description": "demo project.",
+  "description": "mock production server",
+  "main": "index.js",
   "scripts": {
-    "lite": "lite-server --port 10001",
-    "start": "npm run lite"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "lite-server": "^2.6.1"
+  "dependencies": {
+    "http-server": "^14.1.1"
   }
 }
